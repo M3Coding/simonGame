@@ -8,20 +8,14 @@ function nextSequence(){
     var randomChosenColor = buttonColors[randomNumber];
     //console.log(randomChosenColor);
     gamePattern.push(randomChosenColor);
-    switch (randomChosenColor) {
-        case "green":
-            $("#green").fadeOut(100).fadeIn(100);
-            break;
-        case "red":
-            $("#red").fadeOut(100).fadeIn(100);;
-            break;
-        case "yellow":
-            $("#yellow").fadeOut(100).fadeIn(100);;
-            break;
-        case "blue":
-            $("#blue").fadeOut(100).fadeIn(100);;
-            break;
-    }
+    $("#" + randomChosenColor).fadeOut(100, function(){
+        var sound = new Audio("./sounds/" + randomChosenColor + ".mp3");
+        sound.play();
+    }).fadeIn(100);
+    
+    
 };
 
-nextSequence()
+$(document).keypress(function() {
+    nextSequence()
+});
